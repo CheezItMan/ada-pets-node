@@ -9,7 +9,18 @@ const BASE_URL = "https://petdibs.herokuapp.com/pets/";
 
 // Option functions.
 const listPets = () => {
-  // Fill out as part of Wave 1.
+  axios.get(BASE_URL)
+  .then((response) => {
+    // const result = setResult
+    // (response.data)
+    // return result
+    setResult(response.data)
+  })
+  .catch(() => {
+    // const result = setError(`Bad Request`)
+    // return result
+    setError(`Bad Request`)
+  });
 }
 
 const showDetails = (selectedPet) => {
@@ -18,7 +29,15 @@ const showDetails = (selectedPet) => {
     return;
   }
 
-  // Fill out as part of Wave 2.
+  axios.get(BASE_URL+selectedPet)
+  .then((response) => {
+    const result = setResult(response.data)
+    return result
+  })
+  .catch(() => {
+    const result = setError(`Failed to show details`)
+    return result
+  });
 }
 
 const removePet = (selectedPet) => {
@@ -27,11 +46,35 @@ const removePet = (selectedPet) => {
     return;
   }
 
-  // Fill out as part of Wave 3.
+  axios.delete(BASE_URL+selectedPet)
+  .then((response) => {
+    const result = setResult(response.data)
+    return result
+  })
+  .catch(() => {
+    const result = setError(`Failed to remove`)
+    return result
+  });
 }
 
 const addPet = (petInfo) => {
-  // Fill out as part of Wave 4.
+
+  // const petData = {
+  //   name: 'george',
+  //   age: 2,
+  //   vaccinated: true
+  // }
+
+  axios.post(BASE_URL, petInfo)
+  .then((response) => {
+    const result = setResult(response.data)
+    return result
+  })
+  .catch(() => {
+    const result = setError(`failed to add pet`)
+    return result
+  });
+  
 }
 
 // Use Node-style exports to export functions for tests and main.
