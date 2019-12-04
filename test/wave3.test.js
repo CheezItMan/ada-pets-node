@@ -1,7 +1,7 @@
 const axios = require('axios'); // Import axios.
 const MockAdapter = require('axios-mock-adapter'); // This is kind of like VCR.
 const result = require('../src/result.js');
- // Import result handling.
+// Import result handling.
 const setHandlers = result.setHandlers;
 
 // b Import our function(s) for testing.
@@ -13,7 +13,7 @@ const removePet = adaPets.removePet;
 const mock = new MockAdapter(axios);
 
 const fail = (error) => {
-  throw new Error(`Test failed! ${error}`);
+  throw new Error(`Test failed! ${ error }`);
 };
 
 describe('Wave 3', () => {
@@ -22,13 +22,13 @@ describe('Wave 3', () => {
     it('Can remove a pet', done => {
       // Arrange.
       // Set up what we want the API to return for this test.
-      mock.onDelete('https://localhost:3000/pets/3').reply(204);
+      mock.onDelete('http://localhost:3000/pets/3').reply(204);
 
       // Assertions come first because they need to be ready before the function call.
       setHandlers(
         () => done(), // No assertions.  We just care that it finished.
         fail
-);
+      );
 
       // Act.
       removePet(3);
