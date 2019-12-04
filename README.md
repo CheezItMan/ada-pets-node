@@ -20,7 +20,6 @@ Ada Lovelace is starting a pet rescue service advertising pets in need of rescue
 
 She's managed to figure out the CLI parts on her own but needs your help with the API requests.
 
-You will be using the [Pets API](https://github.com/AdaGold/pets-api) for this.
 
 ### Setup
 
@@ -45,7 +44,30 @@ There are tests for each of the waves in the `test/` directory, there is one fil
 
 ## Wave 0: Familiarize Yourself with the Pets API
 
-Read through the [documentation for the Pets API](https://github.com/AdaGold/pets-api) and experiment with using it via Postman so you can have a handle on how it works for the tasks below.
+
+We will be using a simulated API for this exercise called [json-server](https://github.com/typicode/json-server).  This node package will take a JSON file and use it to generate a RESTful API.  
+
+You can look at the `package.json` file and see this section
+
+```json
+"scripts": {
+    "test": "jest",
+    "server": "json-server --watch pets.json"
+  },
+```
+
+This means you can start the API server by typing `$ npm run server`.  This will start the API on port 3000.
+
+You can preview it by going to [http://localhost:3000/pets](http://localhost:3000/pets).  
+
+In Postman, try to make a few API calls to verify how it works including:
+
+- Listing all the pets
+- Listing a single pet by ID
+- Adding a pet
+- Updating a Pet
+
+Notice how the `pets.json` file changes.
 
 ## Wave 1: List Pets
 
