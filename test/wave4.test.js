@@ -19,10 +19,10 @@ describe("Wave 4", () => {
   describe("addPet", () => {
     it("Can add a pet", done => {
       const reqData = {
-          name: "Artemis",
-          breed: "goddess",
-          about: "Goddess of the hunt."
-        }
+        name: "Artemis",
+        breed: "goddess",
+        about: "Goddess of the hunt."
+      }
 
       // Arrange.
       // Set up what we want the API to return for this test.
@@ -59,7 +59,8 @@ describe("Wave 4", () => {
       mock.onPost(new RegExp("https://petdibs.herokuapp.com/pets/?"), {name: "Zeus"}).reply(500);
 
       setHandlers(
-        fail,                   // Fail if we don't setError.
+        // Fail if we don't setError.
+        () => { throw new Error("Did not call setError!") },
         error => {
           setTimeout(() => {    // We need this to consistently display assertion errors.
             // Assert.

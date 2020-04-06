@@ -68,6 +68,22 @@ Remember, all requests that we make have a verb and a path.
 1. When a pet is successfully created, we get back a response. What is the data structure of this response? What is the status code?
 1. After we create a pet, we can verify that the pet was created from the response. We can also verify that the pet was created and added to the list of pets another way. What else can we do?
 
+### Important Provided Functions
+
+#### `setResult`
+
+This function is used to indicate that your function has actually produced a meaningful result.  (This is necessary because of the asynchronous nature of JavaScript input/output.)
+
+If you return a value instead of calling `setResult` (or `setError`) then your tests will time out (fail because you took too long to produce a result).
+
+#### `setError`
+
+This function is used to indicate that your function has produced an error.  (Again, this is necessary because of the asynchronous nature of JavaScript input/output.)
+
+You should use this function instead of `throw`ing an error from your functions.
+
+**A note on tests**: The tests that expect you to set an error will validate not only that your code produced an error but also that it had an error message that included **_specific_** words using a regular expression.
+
 ## Wave 1: List Pets
 
 Before we start doing things like looking at individual pets we want to be able to get a list of all of the pets.
@@ -82,7 +98,7 @@ These tests use a mocking library to do what we used VCR to do in Ruby.  In each
 
 * `listPets`
   * `setResult` should be passed the array of pets.
-  * `setError` should be passed an error message.  (You may need to write this.)
+  * `setError` should be passed an error message.  (You may need to write this message.)
 
 ## Wave 2: Details
 
@@ -96,7 +112,7 @@ You can run the Wave 2 tests with `jest test/wave2.test.js`.  Once these are pas
 
 * `showDetails`
   * `setResult` should be passed the `Object` that represents the pet.
-  * `setError` should be passed an error message.  (You may need to write this.)
+  * `setError` should be passed an error message.  (You may need to write this message.)
 
 ## Wave 3: Remove Pet
 
@@ -109,8 +125,8 @@ You can run the Wave 3 tests with `jest test/wave3.test.js`.  Once these are pas
 ### Function to complete
 
 * `removePet`
-  * `setResult` should be passed a success message.  (You may need to write this.)
-  * `setError` should be passed an error message.  (You may need to write this.)
+  * `setResult` should be passed a success message.  (You may need to write this message.)
+  * `setError` should be passed an error message.  (You may need to write this message.)
 
 
 ## Wave 4: Add a Pet
@@ -125,4 +141,4 @@ You can run the Wave 4 tests with `jest test/wave4.test.js`.  Once these are pas
 
 * `addPet`
   * `setResult` should be passed the new pet (from the API).
-  * `setError` should be passed an error message.  (You may need to write this.)
+  * `setError` should be passed an error message.  (You may need to write this message.)

@@ -58,7 +58,8 @@ describe("Wave 1", () => {
       mock.onGet(/https:\/\/petdibs.herokuapp.com\/pets\/?/).reply(500);
 
       setHandlers(
-        fail,                   // Fail if we don't setError.
+        // Fail if we don't setError.
+        () => { throw new Error("Did not call setError!") },
         error => {
           setTimeout(() => {    // We need this to consistently display assertion errors.
             // Assert.

@@ -6,7 +6,7 @@ const resultFunctions = (() => {
 
   const setHandlers = (resultCallback, errorCallback, timeoutCallback, timeoutMs) => {
     timeoutCallback = timeoutCallback || (() => {
-      throw new Error("Took too long!");
+      throw new Error("Took too long!  Did you forget to call setResult or setError?");
     });
     timeoutMs = timeoutMs || 100;
     resultHandler = resultCallback;

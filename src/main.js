@@ -17,14 +17,14 @@ const exit = () => {
   process.exit();
 }
 
-let selectedPet = null;
+let selectedPetId = null;
 
 const selectPet = (_, args) => {
   const petId = parseInt(args.petId, 10);
   if (isNaN(petId)) {
     setError("Please provide a number for petId got: ${args.petId}");
   } else {
-    selectedPet = petId;
+    selectedPetId = petId;
     setResult(petId);
   }
 }
@@ -52,7 +52,7 @@ const doAction = (action, resultCallback) => {
       logError("Command failed: Took more than three seconds to produce a result!");
       done();
     }, 3000);
-    action(selectedPet, args);
+    action(selectedPetId, args);
   }
 }
 

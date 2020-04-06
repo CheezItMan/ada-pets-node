@@ -55,7 +55,8 @@ describe("Wave 2", () => {
 
     it("sets an error string when there is no selected pet", done => {
       setHandlers(
-        fail,                   // Fail if we don't setError.
+        // Fail if we don't setError.
+        () => { throw new Error("Did not call setError!") },
         error => {
           setTimeout(() => {    // We need this to consistently display assertion errors.
             // Assert.
@@ -77,7 +78,8 @@ describe("Wave 2", () => {
       mock.onGet("https://petdibs.herokuapp.com/pets/1000000").reply(404);
 
       setHandlers(
-        fail,                   // Fail if we don't setError.
+        // Fail if we don't setError.
+        () => { throw new Error("Did not call setError!") },
         error => {
           setTimeout(() => {    // We need this to consistently display assertion errors.
             // Assert.
