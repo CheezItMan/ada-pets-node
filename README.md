@@ -5,7 +5,8 @@
 ## At a Glance
 
 - Individual, [stage 1](https://github.com/Ada-Developers-Academy/pedagogy/blob/master/rule-of-three.md#stage-1) project.
-- To be completed in class on **DATE**. No pull request is required.
+- Due before class, **DATE HERE**
+- Submit this project with a PR
 
 ## Learning Goals
 
@@ -39,13 +40,33 @@ There are two other files that we've provided that you won't need to change `src
   * `setError` call this function to indicate an error in your function.  Again, we use this because Axios is asynchronous.
   *  If it takes too long for your code to produce a result (like say because you haven't written it yet) it will time out.
 
+**Note: Because Axios is asynchronous we will need to use `setResult` instead of returning results and `setError` instead of throwing errors.**
+
+## Testing Requirements
+
 There are tests for each of the waves in the `test/` directory, there is one file per wave.  For example you can run the Wave 1 tests with `jest test/wave1.test.js`.
 
-**Note: Because Axios is asynchronous we will need to use `setResult` instead of returning results and `setError` instead of throwing errors.**
+Use the tests to help you verify each wave's completion. We expect by project submission that all tests will pass.
 
 ## Wave 0: Familiarize Yourself with the Pets API
 
 Read through the [documentation for the Pets API](https://github.com/AdaGold/pets-api) and experiment with using it via Postman so you can have a handle on how it works for the tasks below.
+
+Answer the following questions to guide through familiarizing yourself with the API:
+
+Remember, all requests that we make have a verb and a path.
+
+1. What is the verb and path of the request to get a list of pets from this API?
+1. The response of this request should be a list of pets. What kind of data structure is the list of pets? What is the status code of this request? Test it with Postman.
+1. What is the verb and path of the request to get the details of a single pet from this API?
+1. What are the query parameters of this request?
+1. Test with Postman:
+    - What kind of data structure is the details of a single, valid pet? What is the status code of this request?
+    - What do we get back if we give an invalid pet id? What is the status code of this request?
+1. What is the verb and path of the request to create a new pet using this API?
+1. What are the parameters we can pass into this request? Which parameters are required? Which are optional?
+1. When a pet is successfully created, we get back a response. What is the data structure of this response? What is the status code?
+1. After we create a pet, we can verify that the pet was created from the response. We can also verify that the pet was created and added to the list of pets another way. What else can we do?
 
 ## Wave 1: List Pets
 
