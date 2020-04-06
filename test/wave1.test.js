@@ -4,7 +4,7 @@ const result = require('../src/result.js');
  // Import result handling.
 const setHandlers = result.setHandlers;
 
-// b Import our function(s) for testing.
+// Import our function(s) for testing.
 const adaPets = require('../src/adaPets.js');
 
 const listPets = adaPets.listPets;
