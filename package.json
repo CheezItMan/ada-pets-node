@@ -9,12 +9,12 @@
     "server": "json-server --watch pets.json"
   },
   "devDependencies": {
-    "axios-mock-adapter": "^1.17.0",
-    "jest": "^24.9.0"
+    "axios-mock-adapter": "^1.18.1",
+    "jest": "^25.2.7"
   },
   "dependencies": {
     "axios": "^0.19.0",
-    "json-server": "^0.15.1",
+    "json-server": "^0.16.1",
     "vorpal": "^1.12.0"
   }
 }
