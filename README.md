@@ -82,7 +82,7 @@ This function is used to indicate that your function has produced an error.  (Ag
 
 You should use this function instead of `throw`ing an error from your functions.
 
-**A note on tests**: The tests that expect you to set an error will validate not only that your code produced an error but also that it had an error message that included **_specific_** words using a regular expression.
+**A note on tests**: Many of the tests that expect you to set an error will validate not only that your code produced an error but also that it had an error message that included **_specific_** words using regular expressions.
 
 ## Wave 1: List Pets
 

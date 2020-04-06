@@ -1,9 +1,10 @@
 const axios = require('axios');                    // Import axios.
 const MockAdapter = require('axios-mock-adapter'); // This is kind of like VCR.
-const result = require('../src/result.js');        // Import result handling.
-const setHandlers = result.setHandlers;
 
-//b Import our function(s) for testing.
+// Import helper functions.
+const {expectResult, expectError} = require('./helper.js');
+
+// Import our function(s) for testing.
 const adaPets = require('../src/adaPets.js');
 const removePet = adaPets.removePet;
 
@@ -23,28 +24,23 @@ describe("Wave 3", () => {
       mock.onDelete("https://petdibs.herokuapp.com/pets/3").reply(204);
 
       // Assertions come first because they need to be ready before the function call.
-      setHandlers(
-        () => done(), // No assertions.  We just care that it finished.
-        fail);
+      expectResult(
+        () => done() // No assertions.  We just care that it finished.
+      );
 
       // Act.
       removePet(3);
     });
 
     it("sets an error string when there is no selected pet", done => {
-      setHandlers(
-        // Fail if we don't setError.
-        () => { throw new Error("Did not call setError!") },
-        error => {
-          setTimeout(() => {    // We need this to consistently display assertion errors.
-            // Assert.
-            expect(error.constructor).toBe(String);
-            expect(error).toMatch("remove");
-            expect(error).toMatch("select");
+      expectError(error => {
+        // Assert.
+        expect(error.constructor).toBe(String);
+        expect(error).toMatch("remove");
+        expect(error).toMatch("select");
 
-            done();
-          })}
-      );
+        done();
+      });
 
       // Act.
       removePet();
@@ -55,18 +51,13 @@ describe("Wave 3", () => {
       // We want this to fail.
       mock.onDelete("https://petdibs.herokuapp.com/pets/1000000").reply(404);
 
-      setHandlers(
-        // Fail if we don't setError.
-        () => { throw new Error("Did not call setError!") },
-        error => {
-          setTimeout(() => {    // We need this to consistently display assertion errors.
-            // Assert.
-            expect(error).toMatch(/failed/i);
-            expect(error).toMatch(/remove/i);
+      expectError(error => {
+        // Assert.
+        expect(error).toMatch(/failed/i);
+        expect(error).toMatch(/remove/i);
 
-            done();
-          })}
-      );
+        done();
+      });
 
       // Act.
       removePet(1000000);

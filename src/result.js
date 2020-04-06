@@ -1,5 +1,5 @@
 // Use a closure to keep track of results and errors;
-const resultFunctions = (() => {
+module.exports = (() => {
   let resultHandler = () => {};
   let errorHandler = () => {};
   let token = undefined;
@@ -30,5 +30,3 @@ const resultFunctions = (() => {
     setHandlers: setHandlers
   }
 })();
-
-module.exports = resultFunctions;

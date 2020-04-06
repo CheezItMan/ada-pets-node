@@ -1,9 +1,10 @@
 const axios = require('axios');                    // Import axios.
 const MockAdapter = require('axios-mock-adapter'); // This is kind of like VCR.
-const result = require('../src/result.js');        // Import result handling.
-const setHandlers = result.setHandlers;
 
-//b Import our function(s) for testing.
+// Import helper functions.
+const {expectResult, expectError} = require('./helper.js');
+
+// Import our function(s) for testing.
 const adaPets = require('../src/adaPets.js');
 const addPet = adaPets.addPet;
 
@@ -37,17 +38,14 @@ describe("Wave 4", () => {
       );
 
       // Assertions come first because they need to be ready before the function call.
-      setHandlers(
-        result => {
-          setTimeout(() => {    // We need this to consistently display assertion errors.
-            expect(result.id).not.toBeNull();
-            expect(result.name).toBe("Artemis");
-            expect(result.breed).toBe("goddess");
-            expect(result.about).toMatch("hunt");
+      expectResult(result => {
+        expect(result.id).not.toBeNull();
+        expect(result.name).toBe("Artemis");
+        expect(result.breed).toBe("goddess");
+        expect(result.about).toMatch("hunt");
 
-            done();
-          })},
-        fail);
+        done();
+      });
 
       // Act.
       addPet(reqData);
@@ -58,18 +56,13 @@ describe("Wave 4", () => {
       // We want this to fail.
       mock.onPost(new RegExp("https://petdibs.herokuapp.com/pets/?"), {name: "Zeus"}).reply(500);
 
-      setHandlers(
-        // Fail if we don't setError.
-        () => { throw new Error("Did not call setError!") },
-        error => {
-          setTimeout(() => {    // We need this to consistently display assertion errors.
-            // Assert.
-            expect(error).toMatch(/failed/i);
-            expect(error).toMatch(/add/i);
+      expectError(error => {
+        // Assert.
+        expect(error).toMatch(/failed/i);
+        expect(error).toMatch(/add/i);
 
-            done();
-          })}
-      );
+        done();
+      });
 
       // Act.
       addPet({name: "Zeus"});
