@@ -1,7 +1,7 @@
 const axios = require('axios'); // Import axios.
 const MockAdapter = require('axios-mock-adapter'); // This is kind of like VCR.
 const result = require('../src/result.js');
- // Import result handling.
+// Import result handling.
 const setHandlers = result.setHandlers;
 
 // b Import our function(s) for testing.
@@ -13,7 +13,7 @@ const addPet = adaPets.addPet;
 const mock = new MockAdapter(axios);
 
 const fail = (error) => {
-  throw new Error(`Test failed! ${error}`);
+  throw new Error(`Test failed! ${ error }`);
 };
 
 describe('Wave 4', () => {
@@ -22,7 +22,7 @@ describe('Wave 4', () => {
     it('Can add a pet', done => {
       const reqData = {
         name: 'Artemis',
-        breed: 'goddess',
+        species: 'goddess',
         about: 'Goddess of the hunt.'
       };
 
@@ -33,7 +33,7 @@ describe('Wave 4', () => {
         {
           id: 918,
           name: 'Artemis',
-          breed: 'goddess',
+          species: 'goddess',
           about: 'Goddess of the hunt.'
         }
       );
@@ -44,20 +44,20 @@ describe('Wave 4', () => {
           setTimeout(() => { // We need this to consistently display assertion errors.
             expect(result.id).not.toBeNull();
             expect(result.name).toBe('Artemis');
-            expect(result.breed).toBe('goddess');
+            expect(result.species).toBe('goddess');
             expect(result.about).toMatch('hunt');
 
             done();
           });
         },
         fail
-);
+      );
 
       // Act.
       addPet(reqData);
     });
 
-    it("sets an error string when the response isn't successful", done => {
+    it('sets an error string when the response isn\'t successful', done => {
       // Arrange.
       // We want this to fail.
       mock.onPost(new RegExp('http://localhost:3000/pets/?'), { name: 'Zeus' }).reply(500);

@@ -1,7 +1,7 @@
 const axios = require('axios'); // Import axios.
 const MockAdapter = require('axios-mock-adapter'); // This is kind of like VCR.
-const result = require('../src/result.js');
- // Import result handling.
+const result = require('../src/result.js');  // Import result handling.
+
 const setHandlers = result.setHandlers;
 
 // b Import our function(s) for testing.
@@ -13,7 +13,7 @@ const showDetails = adaPets.showDetails;
 const mock = new MockAdapter(axios);
 
 const fail = (error) => {
-  throw new Error(`Test failed! ${error}`);
+  throw new Error(`Test failed! ${ error }`);
 };
 
 describe('Wave 2', () => {
@@ -25,10 +25,8 @@ describe('Wave 2', () => {
       mock.onGet('http://localhost:3000/pets/3').reply(200, {
         id: 3,
         name: 'Cerberus',
-        breed: 'dog',
-        image: null,
-        about: 'Three headed dog that guards the entrance to the underworld',
-        age: 13700000000,
+        species: 'dog',
+        age: 10000,
         owner: 'Hades'
       });
 
@@ -41,9 +39,7 @@ describe('Wave 2', () => {
 
             expect(result.id).toBe(3);
             expect(result.name).toBe('Cerberus');
-            expect(result.breed).toBe('dog');
-            expect(result.image).toBeNull();
-            expect(result.about).toMatch('dog');
+            expect(result.species).toBe('dog');
             expect(result.age).toBeGreaterThan(9000);
             expect(result.owner).toBe('Hades');
 
@@ -51,7 +47,7 @@ describe('Wave 2', () => {
           });
         },
         fail
-);
+      );
 
       // Act.
       showDetails(3);
@@ -76,7 +72,7 @@ describe('Wave 2', () => {
       showDetails();
     });
 
-    it("sets an error string when the response isn't successful", done => {
+    it('sets an error string when the response isn\'t successful', done => {
       // Arrange.
       // We want this to fail.
       mock.onGet('https://localhost:3000/pets/1000000').reply(404);
@@ -87,7 +83,7 @@ describe('Wave 2', () => {
           setTimeout(() => { // We need this to consistently display assertion errors.
             // Assert.
             expect(error).toMatch(/failed/i);
-            expect(error).toMatch(/details/i);
+            expect(error).toMatch(/404/);
 
             done();
           });
