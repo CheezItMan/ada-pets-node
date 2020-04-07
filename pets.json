@@ -1,0 +1,53 @@
+{
+  "pets": [
+    {
+      "id": 1,
+      "name": "Everly B",
+      "species": "Dog",
+      "age": 13,
+      "owner": "Kari"
+    },
+    {
+      "id": 2,
+      "name": "Gecky",
+      "species": "Gecko",
+      "age": 13,
+      "owner": "Dan"
+    },
+    {
+      "id": 3,
+      "name": "Samson",
+      "species": "Cat",
+      "age": 13,
+      "owner": "Dee"
+    },
+    {
+      "id": 4,
+      "name": "Ruth",
+      "species": "Dog",
+      "age": 7,
+      "owner": "Crystal"
+    },
+    {
+      "id": 5,
+      "name": "Stinker",
+      "species": "dog",
+      "age": 14,
+      "owner": "Chris"
+    },
+    {
+      "id": 6,
+      "name": "Coco",
+      "species": "Dog",
+      "age": 11,
+      "owner": "Ada"
+    },
+    {
+      "id": 7,
+      "name": "Rex",
+      "species": "Dog",
+      "age": 9,
+      "owner": "Christine"
+    }
+  ]
+}
