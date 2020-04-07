@@ -12,8 +12,8 @@ const listPets = () => {
   // Fill out as part of Wave 1.
 };
 
-const showDetails = (selectedPet) => {
-  if (!selectedPet) {
+const showDetails = (selectedPetId) => {
+  if (!selectedPetId) {
     setError("You tried to show details for a pet without selecting it!");
     
   }
@@ -21,8 +21,8 @@ const showDetails = (selectedPet) => {
   // Fill out as part of Wave 2.
 };
 
-const removePet = (selectedPet) => {
-  if (!selectedPet) {
+const removePet = (selectedPetId) => {
+  if (!selectedPetId) {
     setError("You tried to remove a pet without selecting it!");
     
   }

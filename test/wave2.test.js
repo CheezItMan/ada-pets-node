@@ -1,20 +1,16 @@
 const axios = require('axios'); // Import axios.
 const MockAdapter = require('axios-mock-adapter'); // This is kind of like VCR.
-const result = require('../src/result.js');  // Import result handling.
 
-const setHandlers = result.setHandlers;
+// Import helper functions.
+const {expectResult, expectError} = require('./helper.js');
 
-// b Import our function(s) for testing.
+// Import our function(s) for testing.
 const adaPets = require('../src/adaPets.js');
 
 const showDetails = adaPets.showDetails;
 
 // This sets the mock adapter on the default instance
 const mock = new MockAdapter(axios);
-
-const fail = (error) => {
-  throw new Error(`Test failed! ${ error }`);
-};
 
 describe('Wave 2', () => {
   // Set up axios test responses.
@@ -31,42 +27,32 @@ describe('Wave 2', () => {
       });
 
       // Assertions come first because they need to be ready before the function call.
-      setHandlers(
-        result => {
-          setTimeout(() => { // We need this to consistently display assertion errors.
-            // Assert.
-            expect(result).toBeInstanceOf(Object);
+      expectResult(result => {
+        // Assert.
+        expect(result).toBeInstanceOf(Object);
 
-            expect(result.id).toBe(3);
-            expect(result.name).toBe('Cerberus');
-            expect(result.species).toBe('dog');
-            expect(result.age).toBeGreaterThan(9000);
-            expect(result.owner).toBe('Hades');
+        expect(result.id).toBe(3);
+        expect(result.name).toBe('Cerberus');
+        expect(result.species).toBe('dog');
+        expect(result.age).toBeGreaterThan(9000);
+        expect(result.owner).toBe('Hades')
 
-            done();
-          });
-        },
-        fail
-      );
+        done();
+      });
 
       // Act.
       showDetails(3);
     });
 
     it('sets an error string when there is no selected pet', done => {
-      setHandlers(
-        fail, // Fail if we don't setError.
-        error => {
-          setTimeout(() => { // We need this to consistently display assertion errors.
-            // Assert.
-            expect(error.constructor).toBe(String);
-            expect(error).toMatch('show details');
-            expect(error).toMatch('select');
+      expectError(error => {
+        // Assert.
+        expect(error.constructor).toBe(String);
+        expect(error).toMatch('show details');
+        expect(error).toMatch('select');
 
-            done();
-          });
-        }
-      );
+        done();
+      });
 
       // Act.
       showDetails();
@@ -77,18 +63,13 @@ describe('Wave 2', () => {
       // We want this to fail.
       mock.onGet('https://localhost:3000/pets/1000000').reply(404);
 
-      setHandlers(
-        fail, // Fail if we don't setError.
-        error => {
-          setTimeout(() => { // We need this to consistently display assertion errors.
-            // Assert.
-            expect(error).toMatch(/failed/i);
-            expect(error).toMatch(/404/);
+      expectError(error => {
+        // Assert.
+        expect(error).toMatch(/failed/i);
+        expect(error).toMatch(/404/);
 
-            done();
-          });
-        }
-      );
+        done();
+      });
 
       // Act.
       showDetails(1000000);

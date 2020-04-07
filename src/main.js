@@ -17,14 +17,14 @@ const exit = () => {
   process.exit();
 }
 
-let selectedPet = null;
+let selectedPetId = null;
 
 const selectPet = (_, args) => {
   const petId = parseInt(args.petId, 10);
   if (isNaN(petId)) {
     setError('Please provide a number for petId got: ${args.petId}');
   } else {
-    selectedPet = petId;
+    selectedPetId = petId;
     setResult(petId);
   }
 }
@@ -52,7 +52,7 @@ const doAction = (action, resultCallback) => {
       logError('Command failed: Took more than three seconds to produce a result!');
       done();
     }, 3000);
-    action(selectedPet, args);
+    action(selectedPetId, args);
   }
 }
 
@@ -85,7 +85,7 @@ vorpal
 vorpal
   .command('add a pet <name>', 'add a new pet')
   .option('-a, --age <age>', 'The pet\'s age in years')
-  .option('-b, --species <species>', 'The pet\'s breed or species')
+  .option('-s, --species <species>', 'The pet\'s species')
   .option('-o, --owner <owner>', 'The pet\'s owner')
   .option('--about <about>', 'About the pet')
   .action(doAction((_, args) => addPet(args)));
