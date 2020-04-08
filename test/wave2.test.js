@@ -48,8 +48,8 @@ describe('Wave 2', () => {
       expectError(error => {
         // Assert.
         expect(error.constructor).toBe(String);
-        expect(error).toMatch('show details');
-        expect(error).toMatch('select');
+        expect(error).toMatch(/show details/i);
+        expect(error).toMatch(/select/i);
 
         done();
       });

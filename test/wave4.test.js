@@ -42,7 +42,7 @@ describe('Wave 4', () => {
         expect(result.id).not.toBeNull();
         expect(result.name).toBe('Artemis');
         expect(result.species).toBe('goddess');
-        expect(result.about).toMatch('hunt');
+        expect(result.about).toMatch(/hunt/);
 
         done();
       });

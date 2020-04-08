@@ -37,8 +37,8 @@ describe('Wave 3', () => {
       expectError(error => {
         // Assert.
         expect(error.constructor).toBe(String);
-        expect(error).toMatch('remove');
-        expect(error).toMatch('select');
+        expect(error).toMatch(/remove/i);
+        expect(error).toMatch(/select/i);
 
         done();
       });
