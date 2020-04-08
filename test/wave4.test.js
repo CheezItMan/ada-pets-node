@@ -19,10 +19,22 @@ describe('Wave 4', () => {
   // Set up axios test responses.
   describe('addPet', () => {
     it('Can add a pet', done => {
-      const reqData = {
-        name: 'Artemis',
+      const name = 'Artemis';
+      const options = {
+        age: 4540000000,
         species: 'goddess',
-        about: 'Goddess of the hunt.'
+        about: 'Goddess of the hunt.',
+        owner: 'herself'
+      }
+
+      const petInfo = {
+        name: name,
+        options: options
+      }
+
+      const reqData = {
+        name: name,
+        ...options
       };
 
       // Arrange.
@@ -32,8 +44,10 @@ describe('Wave 4', () => {
         {
           id: 918,
           name: 'Artemis',
+          age: 4540000000,
           species: 'goddess',
-          about: 'Goddess of the hunt.'
+          about: 'Goddess of the hunt.',
+          owner: 'herself'
         }
       );
 
@@ -48,7 +62,7 @@ describe('Wave 4', () => {
       });
 
       // Act.
-      addPet(reqData);
+      addPet(petInfo);
     });
 
     it('sets an error string when the response isn\'t successful', done => {
