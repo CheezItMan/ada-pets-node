@@ -50,7 +50,7 @@ describe('Wave 3', () => {
     it('sets an error string when the response isn\'t successful', done => {
       // Arrange.
       // We want this to fail.
-      mock.onDelete('https://localhost:3000/pets/1000000').reply(404);
+      mock.onDelete('http://localhost:3000/pets/1000000').reply(404);
 
       expectError(error => {
         // Assert.

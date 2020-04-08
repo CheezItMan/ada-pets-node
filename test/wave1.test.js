@@ -50,7 +50,7 @@ describe('Wave 1', () => {
     it('sets an error string when the response isn\'t successful', done => {
       // Arrange.
       // We want this to fail.
-      mock.onGet(/https:\/\/localhost:3000\/pets\/?/).reply(500);
+      mock.onGet(/http:\/\/localhost:3000\/pets\/?/).reply(500);
 
       expectError(error => {
         // Assert.
