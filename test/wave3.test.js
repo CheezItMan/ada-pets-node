@@ -22,7 +22,7 @@ describe('Wave 3', () => {
     it('Can remove a pet', done => {
       // Arrange.
       // Set up what we want the API to return for this test.
-      mock.onDelete('http://localhost:3000/pets/3').reply(204);
+      mock.onDelete('http://localhost:3000/pets/3').reply(200);
 
       // Assertions come first because they need to be ready before the function call.
       expectResult(
