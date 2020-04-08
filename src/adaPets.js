@@ -15,19 +15,17 @@ const listPets = () => {
 const showDetails = (selectedPetId) => {
   if (!selectedPetId) {
     setError("You tried to show details for a pet without selecting it!");
-    
+  } else {
+    // Fill out as part of Wave 2.
   }
-
-  // Fill out as part of Wave 2.
 };
 
 const removePet = (selectedPetId) => {
   if (!selectedPetId) {
     setError("You tried to remove a pet without selecting it!");
-    
+  } else {
+    // Fill out as part of Wave 3.
   }
-
-  // Fill out as part of Wave 3.
 };
 
 const addPet = (petInfo) => {
