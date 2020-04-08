@@ -155,7 +155,7 @@ You can run the Wave 3 tests with `jest test/wave3.test.js`.  Once these are pas
 
 Sometimes we'll have new pets that want to be adopted.
 
-To do this fill out the `addPet` function.  This will need to call the Pets API to add the pet.  This should `setResult` with a success message if this works and should call `setError` with an error message if the request fails.
+To do this fill out the `addPet` function.  This will need to call the Pets API to add the pet.  This should `setResult` with the newly added pet if this works and should call `setError` with an error message if the request fails.
 
 You can run the Wave 4 tests with `jest test/wave4.test.js`.  Once these are passing you're done!  :tada:
 
