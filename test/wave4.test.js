@@ -25,12 +25,12 @@ describe('Wave 4', () => {
         species: 'goddess',
         about: 'Goddess of the hunt.',
         owner: 'herself'
-      }
+      };
 
       const petInfo = {
         name: name,
         options: options
-      }
+      };
 
       const reqData = {
         name: name,
@@ -79,7 +79,7 @@ describe('Wave 4', () => {
       });
 
       // Act.
-      addPet({ name: 'Zeus' });
+      addPet({ name: 'Zeus', options: {} });
     });
   });
 });
