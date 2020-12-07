@@ -12,5 +12,8 @@ WORKDIR /app
 ARG SUBMISSION_SUBFOLDER
 ADD $SUBMISSION_SUBFOLDER /app
 
+# Add the original test files to the image
+ADD test .
+
 RUN npm install
 RUN chmod +x test.sh
